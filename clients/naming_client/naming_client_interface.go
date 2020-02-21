@@ -36,4 +36,7 @@ type INamingClient interface {
 
 	//获取全部服务信息
 	GetAllServicesInfo(param vo.GetAllServiceInfoParam) ([]model.Service, error)
+
+	//获取服务列表
+	GetServiceList(pageNo int, pageSize int, groupName string, selector *model.ExpressionSelector) *model.ServiceList
 }

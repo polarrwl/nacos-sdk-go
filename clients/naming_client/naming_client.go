@@ -246,3 +246,11 @@ func (sc *NamingClient) Unsubscribe(param *vo.SubscribeParam) error {
 	sc.subCallback.RemoveCallbackFuncs(utils.GetGroupName(param.ServiceName, param.GroupName), strings.Join(param.Clusters, ","), &param.SubscribeCallback)
 	return nil
 }
+
+//获取service列表
+func (sc *NamingClient) GetServiceList(pageNo int, pageSize int, groupName string, selector *model.ExpressionSelector) *model.ServiceList {
+	if groupName == "" {
+		groupName = constant.DEFAULT_GROUP
+	}
+	return sc.hostReactor.GetServiceList(pageNo, pageSize, groupName, selector)
+}

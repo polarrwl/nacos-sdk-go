@@ -151,3 +151,12 @@ func (hr *HostReactor) asyncUpdateService() {
 	}
 
 }
+
+func (hr *HostReactor) GetServiceList(pageNo int, pageSize int, groupName string, selector *model.ExpressionSelector) *model.ServiceList {
+	result, err := hr.serviceProxy.GetServiceList(pageNo, pageSize, groupName, selector)
+	if err != nil {
+		log.Printf("[ERROR]:query services info return error! groupName:%s  err:%s \n", groupName, err.Error())
+		return nil
+	}
+	return result
+}
